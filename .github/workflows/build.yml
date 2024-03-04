@@ -35,7 +35,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: github-pages
+          name: MapleHeardle
           path: |
             dist/**/*
             public/**/*
@@ -47,6 +47,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Download a single artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: MapleHeardle
       - name: Setup Pages
         uses: actions/upload-pages-artifact@v3
         with:
