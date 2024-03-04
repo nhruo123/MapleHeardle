@@ -6,10 +6,7 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 jobs:
-  build-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,15 +18,27 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: MapleHeardle
-          path: dist
-      - name: Setup Pages
-        uses: actions/upload-pages-artifact@v3
-        with:
           path: dist/**/*
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          if-no-files-found: error
+        
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: MapleHeardle
+        path: .
+    - uses: actions/configure-pages@v4
+    - uses: actions/upload-pages-artifact@v4
+      with:
+        path: .
+    - id: deployment
+      uses: actions/deploy-pages@v4
