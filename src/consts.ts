@@ -1,4 +1,4 @@
-export const HEARDLE_START_DATE = new Date(2024, 3 - 1, 2, 0, 0, 0, 0);
+export const HEARDLE_START_DATE = new Date(2024, 3 - 1, 7, 0, 0, 0, 0);
 export const MS_IN_DAY = 1000 * 60 * 60 * 24;
 export const TODAY = new Date();
 export const HEARDLE_GAME_DAY = Math.floor(
