@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Guess, type SongGuess } from "../types";
+  import { Guess, type SongGuess } from "../../types";
 
   export let guess: SongGuess;
 </script>

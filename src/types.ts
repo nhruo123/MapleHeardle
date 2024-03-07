@@ -25,10 +25,12 @@ export type Song = {
   youtube: string;
 };
 
-export type StorageLayout = {
-  date: number,
+export type GlobalState = {
   gameSate: GameState,
   currentGuess: number;
-  currentPlayTime: number
   guessHistory: SongGuess[],
+}
+
+export type RestoreState = GlobalState & {
+  date: number,
 }
