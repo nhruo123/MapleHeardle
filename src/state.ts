@@ -34,12 +34,14 @@ function createGlobalState() {
 
   const setCurrentGuess = (guess: SongGuess) => update((v) => {
     v.guessHistory[v.currentGuess - 1] = guess;
-    v.currentGuess += 1;
     if (guess.guess === Guess.Good) {
       v.gameSate = GameState.Won
-    } else if (v.currentGuess > MAX_GUESSES) {
+    } else if (v.currentGuess >= MAX_GUESSES) {
       v.gameSate = GameState.Lost;
+    } else {
+      v.currentGuess += 1;
     }
+
     return v;
   });
 
