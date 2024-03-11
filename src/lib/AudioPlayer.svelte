@@ -22,7 +22,10 @@
       },
     });
 
-    player.on("ready", () => player?.setVolume(100));
+    player.on("ready", async () => {
+      await player?.setVolume(100);
+      await player?.unMute();
+    });
 
     return () => player?.destroy();
   });
